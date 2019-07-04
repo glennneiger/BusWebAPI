@@ -1,9 +1,8 @@
 ﻿using Aleph1.Logging;
 using BusWebAPI.DAL.Contracts;
 using BusWebAPI.Models;
-using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
+using Z.EntityFramework.Plus;
 
 namespace BusWebAPI.DAL.Implementation
 {
@@ -24,13 +23,23 @@ namespace BusWebAPI.DAL.Implementation
         [Logged]
         public IQueryable<Bus> GetBusList()
         {
-            return busContext.Bus.Include(p => p.PeopleOnBus).AsQueryable();
+            return busContext.Bus.IncludeFilter(b => b.PeopleOnBus.Where(p => p.IsVerified == true)).Where(b => b.IsActive == true).AsQueryable();
         }
 
         [Logged]
         public Bus GetBusByID(int busID)
         {
-            return busContext.Bus.Include(p => p.PeopleOnBus).FirstOrDefault(b => b.ID == busID);
+            return busContext.Bus.IncludeFilter(b => b.PeopleOnBus.Where(p => p.IsVerified == true)).FirstOrDefault(b => b.ID == busID);
+        }
+
+        public Bus AddBus(Bus bus)
+        {
+            return busContext.Bus.Add(bus);
+        }
+
+        public PeopleOnBus RegisterToBus(PeopleOnBus peopleOnBus)
+        {
+            return busContext.PeopleOnBus.Add(peopleOnBus);
         }
     }
 }

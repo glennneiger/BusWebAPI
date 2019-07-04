@@ -12,12 +12,7 @@ namespace BusWebAPI.Models
         public int ID { get; set; }
 
         /// <summary>
-        /// גף
-        /// </summary>
-        public string Department { get; set; }
-
-        /// <summary>
-        /// צוות
+        /// גף + צוות
         /// </summary>
         public string Team { get; set; }
 
@@ -50,5 +45,10 @@ namespace BusWebAPI.Models
         /// הסעה אליו הוא נרשם
         /// </summary>
         public int BusID { get; set; }
+
+        /// <summary>
+        /// האם מאושר
+        /// </summary>
+        public bool IsVerified { get; set; }
     }
 }

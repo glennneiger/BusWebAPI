@@ -3,6 +3,7 @@ using Aleph1.Logging;
 using Aleph1.WebAPI.ExceptionHandler;
 using BusWebAPI.BL.Contracts;
 using BusWebAPI.Models;
+using BusWebAPI.Models.PostModels;
 using System.Linq;
 using System.Web.Http;
 
@@ -45,6 +46,27 @@ namespace BusWebAPI.WebAPI.Controllers
             return BL.GetBusByID(busID);
         }
 
+        /// <summary>
+        /// הרשמה להסעה
+        /// </summary>
+        /// <param name="newBus">הסעה חדשה</param>
+        /// <returns>ההסעה שנוספה</returns>
+        [Logged, HttpPost, Route("api/Bus/AddBus"), FriendlyMessage("הוספת הסעה לא הצליחה")]
+        public Bus AddBus(AddBus newBus)
+        {
+            return BL.AddBus(newBus);
+        }
+
+        /// <summary>
+        /// הרשמה להסעה
+        /// </summary>
+        /// <param name="registerToBus">הרשמה להסעה</param>
+        /// <returns>הנרשם החדש</returns>
+        [Logged, HttpPost, Route("api/Bus/RegisterToBus"), FriendlyMessage("לא ניתן להרשם כרגע להסעה")]
+        public PeopleOnBus RegisterToBus(RegisterToBus registerToBus)
+        {
+            return BL.RegisterToBus(registerToBus);
+        }
 
     }
 }

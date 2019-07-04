@@ -1,4 +1,5 @@
 ﻿using BusWebAPI.Models;
+using BusWebAPI.Models.PostModels;
 using System.Linq;
 
 namespace BusWebAPI.BL.Contracts
@@ -20,6 +21,19 @@ namespace BusWebAPI.BL.Contracts
         /// <param name="busID">מס' מזהה</param>
         /// <returns>הסעה</returns>
         Bus GetBusByID(int busID);
+
+        /// <summary>
+        /// הוספת הסעה חדשה
+        /// </summary>
+        /// <param name="newBus">מודל של הסעה</param>
+        Bus AddBus(AddBus newBus);
+
+        /// <summary>
+        /// הרשמה להסעה
+        /// </summary>
+        /// <param name="registerToBus">מודל בן אדם בהסעה</param>
+        /// <returns>רשום חדש</returns>
+        PeopleOnBus RegisterToBus(RegisterToBus registerToBus);
 
     }
 }

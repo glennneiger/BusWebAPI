@@ -6,6 +6,11 @@ namespace BusWebAPI.DAL.Moq
 {
     internal class DALMoq : IDAL
     {
+        public Bus AddBus(Bus bus)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public Bus GetBusByID(int busID)
         {
             throw new System.NotImplementedException();
@@ -14,6 +19,11 @@ namespace BusWebAPI.DAL.Moq
         public IQueryable<Bus> GetBusList()
         {
             return null;
+        }
+
+        public PeopleOnBus RegisterToBus(PeopleOnBus peopleOnBus)
+        {
+            throw new System.NotImplementedException();
         }
 
         public void SaveChanges()
