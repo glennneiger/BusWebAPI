@@ -46,5 +46,25 @@ namespace BusWebAPI.WebAPI.Controllers
         {
             return BL.GetRideRequests(busID);
         }
+
+        /// <summary>
+        /// אישור בקשה לנסיעה
+        /// </summary>
+        /// <param name="requestorID">מס' מבקש</param>
+        [Authenticated(AllowAnonymous = false, RequireManagerAccess = false), Logged, HttpPut, Route("api/PeopleOnBus/ApproveRideRequest"), FriendlyMessage("לא ניתן לאשר בקשה זו כרגע")]
+        public void ApproveRideRequest(int requestorID)
+        {
+            BL.ApproveRideRequest(requestorID);
+        }
+
+        /// <summary>
+        /// דחיית בקשה לנסיעה
+        /// </summary>
+        /// <param name="requestorID">מס' מבקש</param>
+        [Authenticated(AllowAnonymous = false, RequireManagerAccess = false), Logged, HttpPut, Route("api/PeopleOnBus/DeclineRideRequest"), FriendlyMessage("לא ניתן לדחות את בקשה זו כרגע")]
+        public void DeclineRideRequest(int requestorID)
+        {
+            BL.DeclineRideRequest(requestorID);
+        }
     }
 }

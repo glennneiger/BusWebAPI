@@ -114,6 +114,10 @@
     <Compile Include="Migrations\201907051529547_userRegistrationAdded.Designer.cs">
       <DependentUpon>201907051529547_userRegistrationAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907052030124_isHidden-PeopleOnBus-Added.cs" />
+    <Compile Include="Migrations\201907052030124_isHidden-PeopleOnBus-Added.Designer.cs">
+      <DependentUpon>201907052030124_isHidden-PeopleOnBus-Added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModuleInit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -155,6 +159,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907051529547_userRegistrationAdded.resx">
       <DependentUpon>201907051529547_userRegistrationAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907052030124_isHidden-PeopleOnBus-Added.resx">
+      <DependentUpon>201907052030124_isHidden-PeopleOnBus-Added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

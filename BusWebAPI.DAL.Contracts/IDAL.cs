@@ -48,6 +48,13 @@ namespace BusWebAPI.DAL.Contracts
         PeopleOnBus RegisterToBus(PeopleOnBus peopleOnBus);
 
         /// <summary>
+        /// קבלת מבקש אישור נסיעה לפי מס' מזהה
+        /// </summary>
+        /// <param name="requestorID">מס' מזהה</param>
+        /// <returns>מודל של מבקש הנסיעה</returns>
+        PeopleOnBus GetRideRequestorByID(int requestorID);
+
+        /// <summary>
         /// רשימת מבקשי נסיעה
         /// </summary>
         /// <returns>רשימה של כל מי שמבקש לנסוע</returns>

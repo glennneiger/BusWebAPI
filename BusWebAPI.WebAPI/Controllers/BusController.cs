@@ -40,7 +40,7 @@ namespace BusWebAPI.WebAPI.Controllers
         /// היסטוריית הסעות
         /// </summary>
         /// <returns>רשימה של הסעות שזמנם עבר</returns>
-        [Logged, HttpGet, Route("api/Bus/GetBusHistory"), FriendlyMessage("לא ניתן לקבל רשימה זו כרגע")]
+        [Authenticated(AllowAnonymous = false, RequireManagerAccess = true), Logged, HttpGet, Route("api/Bus/GetBusHistory"), FriendlyMessage("לא ניתן לקבל רשימה זו כרגע")]
         public IQueryable<Bus> GetBusHistory()
         {
             return BL.GetBusHistory();

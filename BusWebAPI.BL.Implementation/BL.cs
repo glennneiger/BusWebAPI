@@ -76,7 +76,8 @@ namespace BusWebAPI.BL.Implementation
                 MefakedName = registerToBus.CommanderName,
                 Comments = registerToBus.Notes,
                 BusID = registerToBus.BusID,
-                IsVerified = false
+                IsVerified = false,
+                IsHidden = false
             };
 
             DAL.RegisterToBus(peopleOnBus);
@@ -95,6 +96,23 @@ namespace BusWebAPI.BL.Implementation
         {
             return DAL.GetRideRequests(busID);
         }
+
+        [Logged]
+        public void ApproveRideRequest(int requestorID)
+        {
+            PeopleOnBus peopleOnBus = DAL.GetRideRequestorByID(requestorID);
+            peopleOnBus.IsVerified = true;
+            DAL.SaveChanges();
+        }
+
+        [Logged]
+        public void DeclineRideRequest(int requestorID)
+        {
+            PeopleOnBus peopleOnBus = DAL.GetRideRequestorByID(requestorID);
+            peopleOnBus.IsHidden = true;
+            DAL.SaveChanges();
+        }
+
 
 
         #endregion
@@ -178,7 +196,6 @@ namespace BusWebAPI.BL.Implementation
             DAL.SaveChanges();
         }
 
- 
         #endregion
 
 

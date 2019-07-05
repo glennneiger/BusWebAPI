@@ -44,6 +44,17 @@ namespace BusWebAPI.BL.Contracts
         /// <returns>רשימה של כל מי שמבקש לנסוע</returns>
         IQueryable<PeopleOnBus> GetRideRequests(int busID);
 
+        /// <summary>
+        /// אישור בקשה לנסיעה
+        /// </summary>
+        /// <param name="requestorID">מס' בקשה</param>
+        void ApproveRideRequest(int requestorID);
+
+        /// <summary>
+        /// דחיית בקשה
+        /// </summary>
+        /// <param name="requestorID">מס' מבקש</param>
+        void DeclineRideRequest(int requestorID);
         #endregion
 
         #region User & Auth

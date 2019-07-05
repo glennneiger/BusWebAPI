@@ -50,5 +50,10 @@ namespace BusWebAPI.Models
         /// האם מאושר
         /// </summary>
         public bool IsVerified { get; set; }
+
+        /// <summary>
+        /// האם להחביא את הבקשה
+        /// </summary>
+        public bool IsHidden { get; set; }
     }
 }

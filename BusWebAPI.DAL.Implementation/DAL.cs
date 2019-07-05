@@ -25,7 +25,7 @@ namespace BusWebAPI.DAL.Implementation
         [Logged]
         public IQueryable<Bus> GetBusList()
         {
-            return busContext.Bus.Include(u => u.PeopleOnBus).Where(b => b.IsActive == true).AsQueryable();
+            return busContext.Bus.IncludeFilter(u => u.PeopleOnBus.Where(p => p.IsVerified == true)).Where(b => b.IsActive == true).AsQueryable();
         }
 
         [Logged]
@@ -55,7 +55,13 @@ namespace BusWebAPI.DAL.Implementation
         [Logged]
         public IQueryable<PeopleOnBus> GetRideRequests(int busID)
         {
-            return busContext.PeopleOnBus.Where(p => p.IsVerified == false && p.BusID == busID);
+            return busContext.PeopleOnBus.Where(p => p.IsVerified == false && p.BusID == busID && p.IsHidden == false);
+        }
+
+        [Logged]
+        public PeopleOnBus GetRideRequestorByID(int requestorID)
+        {
+            return busContext.PeopleOnBus.FirstOrDefault(p => p.ID == requestorID);
         }
 
         #endregion
