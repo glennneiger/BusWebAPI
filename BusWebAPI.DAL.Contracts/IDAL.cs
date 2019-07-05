@@ -46,6 +46,12 @@ namespace BusWebAPI.DAL.Contracts
         /// <param name="peopleOnBus">מודל בן אדם בהסעה</param>
         /// <returns>רשום חדש</returns>
         PeopleOnBus RegisterToBus(PeopleOnBus peopleOnBus);
+
+        /// <summary>
+        /// רשימת מבקשי נסיעה
+        /// </summary>
+        /// <returns>רשימה של כל מי שמבקש לנסוע</returns>
+        IQueryable<PeopleOnBus> GetRideRequests(int busID);
         #endregion
 
         #region User & Auth

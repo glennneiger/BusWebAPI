@@ -31,6 +31,11 @@ namespace BusWebAPI.DAL.Moq
             return null;
         }
 
+        public IQueryable<PeopleOnBus> GetRideRequests(int busID)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public User GetUserByID(int userID)
         {
             throw new System.NotImplementedException();

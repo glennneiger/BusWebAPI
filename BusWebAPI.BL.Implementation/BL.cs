@@ -90,6 +90,13 @@ namespace BusWebAPI.BL.Implementation
             return DAL.GetBusHistory();
         }
 
+        [Logged]
+        public IQueryable<PeopleOnBus> GetRideRequests(int busID)
+        {
+            return DAL.GetRideRequests(busID);
+        }
+
+
         #endregion
 
         #region User & Auth
@@ -171,6 +178,7 @@ namespace BusWebAPI.BL.Implementation
             DAL.SaveChanges();
         }
 
+ 
         #endregion
 
 

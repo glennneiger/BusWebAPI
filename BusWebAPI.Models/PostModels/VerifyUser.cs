@@ -1,6 +1,9 @@
 ﻿
 namespace BusWebAPI.Models.PostModels
 {
+    /// <summary>
+    /// מודל לאישור הרשאות למשתמש
+    /// </summary>
     public class VerifyUser
     {
 

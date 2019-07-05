@@ -37,5 +37,14 @@ namespace BusWebAPI.WebAPI.Controllers
             return BL.RegisterToBus(registerToBus);
         }
 
+        /// <summary>
+        /// קבלת רשימת מבקשי נסיעה
+        /// </summary>
+        /// <returns>רשימת מבקשי נסיעה</returns>
+        [Authenticated(AllowAnonymous = false, RequireManagerAccess = false), Logged, HttpGet, Route("api/PeopleOnBus/GetRideRequests"), FriendlyMessage("לא ניתן לענות לבקשה זו כרגע")]
+        public IQueryable<PeopleOnBus> GetRideRequests(int busID)
+        {
+            return BL.GetRideRequests(busID);
+        }
     }
 }

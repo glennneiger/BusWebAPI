@@ -30,7 +30,7 @@ namespace BusWebAPI.WebAPI.Controllers
         /// קבלת רשימת בקשות להרשאות
         /// </summary>
         /// <returns>קבלת רשימת בקשות להרשאות</returns>
-        [Logged, HttpGet, Route("api/User/GetUserRequests"), FriendlyMessage("לא ניתן לקבל מידע על מבקשי הרשאות כרגע")]
+        [Authenticated(AllowAnonymous = false, RequireManagerAccess = true), Logged, HttpGet, Route("api/User/GetUserRequests"), FriendlyMessage("לא ניתן לקבל מידע על מבקשי הרשאות כרגע")]
         public IQueryable<User> GetUserRequests()
         {
             return BL.GetUserRequests();
@@ -40,7 +40,7 @@ namespace BusWebAPI.WebAPI.Controllers
         /// אישור בקשת משתמש ומתן הרשאות
         /// </summary>
         /// <param name="verifyUser"></param>
-        [Logged, HttpPut, Route("api/User/VerifyUserRequest"), FriendlyMessage("לא ניתן לעדכן כרגע")]
+        [Authenticated(AllowAnonymous = false, RequireManagerAccess = true), Logged, HttpPut, Route("api/User/VerifyUserRequest"), FriendlyMessage("לא ניתן לעדכן כרגע")]
         public void VerifyUserRequest(VerifyUser verifyUser)
         {
             BL.VerifyUserRequest(verifyUser);
@@ -50,7 +50,7 @@ namespace BusWebAPI.WebAPI.Controllers
         /// דחיית בקשה של משתמש ומחיקתה מהרשימה
         /// </summary>
         /// <param name="userID">מס' משתמש ייחודי</param>
-        [Logged, HttpDelete, Route("api/User/DeclineUserRequest"), FriendlyMessage("לא ניתן לעדכן כרגע")]
+        [Authenticated(AllowAnonymous = false, RequireManagerAccess = true), Logged, HttpDelete, Route("api/User/DeclineUserRequest"), FriendlyMessage("לא ניתן לעדכן כרגע")]
         public void DeclineUserRequest(int userID)
         {
             BL.DeclineUserRequest(userID);

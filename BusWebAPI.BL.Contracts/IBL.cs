@@ -38,6 +38,12 @@ namespace BusWebAPI.BL.Contracts
         /// <returns>רשום חדש</returns>
         PeopleOnBus RegisterToBus(RegisterToBus registerToBus);
 
+        /// <summary>
+        /// רשימת מבקשי נסיעה
+        /// </summary>
+        /// <returns>רשימה של כל מי שמבקש לנסוע</returns>
+        IQueryable<PeopleOnBus> GetRideRequests(int busID);
+
         #endregion
 
         #region User & Auth
