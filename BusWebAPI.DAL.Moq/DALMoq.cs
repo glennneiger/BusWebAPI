@@ -16,6 +16,11 @@ namespace BusWebAPI.DAL.Moq
             throw new System.NotImplementedException();
         }
 
+        public IQueryable<Bus> GetBusHistory()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public IQueryable<Bus> GetBusList()
         {
             return null;

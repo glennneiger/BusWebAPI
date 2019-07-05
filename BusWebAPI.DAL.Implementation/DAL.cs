@@ -29,6 +29,12 @@ namespace BusWebAPI.DAL.Implementation
         }
 
         [Logged]
+        public IQueryable<Bus> GetBusHistory()
+        {
+            return busContext.Bus.IncludeFilter(b => b.PeopleOnBus.Where(p => p.IsVerified == true)).Where(b => b.IsActive == false).AsQueryable();
+        }
+
+        [Logged]
         public Bus GetBusByID(int busID)
         {
             return busContext.Bus.IncludeFilter(b => b.PeopleOnBus.Where(p => p.IsVerified == true)).FirstOrDefault(b => b.ID == busID);
@@ -47,6 +53,7 @@ namespace BusWebAPI.DAL.Implementation
         }
         #endregion
 
+        #region User & Auth
         [Logged]
         public User RegisterUser(User user)
         {
@@ -64,5 +71,7 @@ namespace BusWebAPI.DAL.Implementation
         {
             return busContext.User.Include(u => u.Password).FirstOrDefault(u => u.ID == userID);
         }
+        #endregion
+
     }
 }

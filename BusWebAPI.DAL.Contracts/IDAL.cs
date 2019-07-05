@@ -22,6 +22,12 @@ namespace BusWebAPI.DAL.Contracts
         IQueryable<Bus> GetBusList();
 
         /// <summary>
+        /// היסטוריית נסיעות
+        /// </summary>
+        /// <returns>היסטוריית נסיעות</returns>
+        IQueryable<Bus> GetBusHistory();
+
+        /// <summary>
         /// הסעה לפי מס' מזהה
         /// </summary>
         /// <param name="busID">מס' מזהה של הסעה</param>
@@ -42,6 +48,7 @@ namespace BusWebAPI.DAL.Contracts
         PeopleOnBus RegisterToBus(PeopleOnBus peopleOnBus);
         #endregion
 
+        #region User & Auth
         /// <summary>
         /// הרשמה למערכת ניהול
         /// </summary>
@@ -62,5 +69,8 @@ namespace BusWebAPI.DAL.Contracts
         /// <param name="userID">מס' מזהה</param>
         /// <returns>משתמש</returns>
         User GetUserByID(int userID);
+
+        #endregion
+
     }
 }

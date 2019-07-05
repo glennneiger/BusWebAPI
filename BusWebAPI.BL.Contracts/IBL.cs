@@ -40,6 +40,7 @@ namespace BusWebAPI.BL.Contracts
 
         #endregion
 
+        #region User & Auth
         /// <summary>
         /// הרשמה למערכת ניהול
         /// </summary>
@@ -68,5 +69,12 @@ namespace BusWebAPI.BL.Contracts
         /// <returns>משתמש</returns>
         User GetUserByID(int userID);
 
+        /// <summary>
+        /// רשימת הסעות היסטוריות
+        /// </summary>
+        /// <returns>רשימה של הסעות שזמנם עבר</returns>
+        IQueryable<Bus> GetBusHistory();
+
+        #endregion
     }
 }

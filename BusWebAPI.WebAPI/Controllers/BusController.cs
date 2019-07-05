@@ -37,6 +37,16 @@ namespace BusWebAPI.WebAPI.Controllers
         }
 
         /// <summary>
+        /// היסטוריית הסעות
+        /// </summary>
+        /// <returns>רשימה של הסעות שזמנם עבר</returns>
+        [Logged, HttpGet, Route("api/Bus/GetBusHistory"), FriendlyMessage("לא ניתן לקבל רשימה זו כרגע")]
+        public IQueryable<Bus> GetBusHistory()
+        {
+            return BL.GetBusHistory();
+        }
+
+        /// <summary>
         /// קבלת הסעה לפי מס' מזהה
         /// </summary>
         /// <param name="busID">מס' מזהה</param>

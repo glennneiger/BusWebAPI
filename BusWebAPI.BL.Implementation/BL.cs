@@ -84,9 +84,15 @@ namespace BusWebAPI.BL.Implementation
             return peopleOnBus;
         }
 
+        [Logged]
+        public IQueryable<Bus> GetBusHistory()
+        {
+            return DAL.GetBusHistory();
+        }
+
         #endregion
 
-
+        #region User & Auth
         public User RegisterUser(RegisterUser registerUser)
         {
             if (DAL.GetUserByPersonalID(registerUser.PersonalID) == null)
@@ -136,6 +142,9 @@ namespace BusWebAPI.BL.Implementation
         {
             return DAL.GetUserByID(userID);
         }
+
+        #endregion
+
 
     }
 }
