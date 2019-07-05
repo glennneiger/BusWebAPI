@@ -89,24 +89,54 @@ namespace BusWebAPI.BL.Implementation
 
         public User RegisterUser(RegisterUser registerUser)
         {
-            Password password = new Password()
+            if (DAL.GetUserByPersonalID(registerUser.PersonalID) == null)
             {
-                HashedPassword = hashHelpers.HashPassword(registerUser.Password)
-            };
 
-            User user = new User()
+                Password password = new Password()
+                {
+                    HashedPassword = hashHelpers.HashPassword(registerUser.Password)
+                };
+
+                User user = new User()
+                {
+                    PersonalID = registerUser.PersonalID,
+                    Password = password,
+                    IsAdmin = false,
+                    IsActive = false
+                };
+
+                DAL.RegisterUser(user);
+                DAL.SaveChanges();
+
+                return user;
+            } else
             {
-                PersonalID = registerUser.PersonalID,
-                Password = password,
-                IsAdmin = false,
-                IsActive = false
-            };
-
-            DAL.RegisterUser(user);
-            DAL.SaveChanges();
-
-            return user;
+                throw new Exception("המשתמש קיים במערכת");
+            }
         }
+
+        public bool Login(LoginModel loginModel)
+        {
+            User user = DAL.GetUserByPersonalID(loginModel.PersonalID);
+            if(user != null && user.IsActive == true)
+            {
+                return hashHelpers.ValidatePassword(loginModel.Password, user.Password.HashedPassword);
+            } else
+            {
+                throw new Exception("המשתמש לא קיים במערכת או שלא אושר עדיין על ידי המנהלים");
+            }
+        }
+
+        public User GetUserByPersonalID(int personalID)
+        {
+            return DAL.GetUserByPersonalID(personalID);
+        }
+
+        public User GetUserByID(int userID)
+        {
+            return DAL.GetUserByID(userID);
+        }
+
     }
 }
 

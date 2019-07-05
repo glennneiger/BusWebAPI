@@ -21,6 +21,16 @@ namespace BusWebAPI.DAL.Moq
             return null;
         }
 
+        public User GetUserByID(int userID)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public User GetUserByPersonalID(int personalID)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public PeopleOnBus RegisterToBus(PeopleOnBus peopleOnBus)
         {
             throw new System.NotImplementedException();

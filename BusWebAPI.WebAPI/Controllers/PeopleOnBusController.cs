@@ -4,6 +4,7 @@ using Aleph1.WebAPI.ExceptionHandler;
 using BusWebAPI.BL.Contracts;
 using BusWebAPI.Models;
 using BusWebAPI.Models.PostModels;
+using BusWebAPI.WebAPI.Security;
 using System.Linq;
 using System.Web.Http;
 
@@ -30,7 +31,7 @@ namespace BusWebAPI.WebAPI.Controllers
         /// </summary>
         /// <param name="registerToBus">הרשמה להסעה</param>
         /// <returns>הנרשם החדש</returns>
-        [Logged, HttpPost, Route("api/PeopleOnBus/RegisterToBus"), FriendlyMessage("לא ניתן להרשם כרגע להסעה")]
+        [Authenticated(AllowAnonymous = true), Logged, HttpPost, Route("api/PeopleOnBus/RegisterToBus"), FriendlyMessage("לא ניתן להרשם כרגע להסעה")]
         public PeopleOnBus RegisterToBus(RegisterToBus registerToBus)
         {
             return BL.RegisterToBus(registerToBus);

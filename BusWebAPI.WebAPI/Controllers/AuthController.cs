@@ -7,6 +7,7 @@ using System.Web.Http;
 using BusWebAPI.Models;
 using BusWebAPI.Models.PostModels;
 using BusWebAPI.BL.Contracts;
+using System;
 
 namespace BusWebAPI.WebAPI.Controllers
 {
@@ -36,14 +37,22 @@ namespace BusWebAPI.WebAPI.Controllers
         }
 
         /// <summary>Logins to the app (specify if as manager).</summary>
-        /// <param name="isManager">if set to <c>true</c> [is manager].</param>
+        /// <param name="loginModel">Login model</param>
         [Authenticated(AllowAnonymous = true), Logged, HttpPost, Route("api/Auth/Login"), FriendlyMessage("התרחשה שגיאה בעת ההתחברות")]
-        public string Login([FromBody] bool isManager)
+        public string Login(LoginModel loginModel)
         {
-            return Request.Headers.AddAuthenticationInfo(SecurityService, new AuthenticationInfo()
+            if(BL.Login(loginModel))
             {
-                IsManager = isManager
-            });
+                return Request.Headers.AddAuthenticationInfo(SecurityService, new AuthenticationInfo()
+                {
+                    UserUniqueID = BL.GetUserByPersonalID(loginModel.PersonalID).ID,
+                    IsManager = BL.GetUserByPersonalID(loginModel.PersonalID).IsAdmin
+                });
+            } else
+            {
+                throw new Exception("שם משתמש או ססמא אינם נכונים");
+            }
+
         }
     }
 }

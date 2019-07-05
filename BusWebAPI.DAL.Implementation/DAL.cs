@@ -1,6 +1,7 @@
 ﻿using Aleph1.Logging;
 using BusWebAPI.DAL.Contracts;
 using BusWebAPI.Models;
+using System.Data.Entity;
 using System.Linq;
 using Z.EntityFramework.Plus;
 
@@ -50,6 +51,18 @@ namespace BusWebAPI.DAL.Implementation
         public User RegisterUser(User user)
         {
             return busContext.User.Add(user);
+        }
+
+        [Logged]
+        public User GetUserByPersonalID(int personalID)
+        {
+            return busContext.User.Include(u => u.Password).FirstOrDefault(u => u.PersonalID == personalID);
+        }
+
+        [Logged]
+        public User GetUserByID(int userID)
+        {
+            return busContext.User.Include(u => u.Password).FirstOrDefault(u => u.ID == userID);
         }
     }
 }

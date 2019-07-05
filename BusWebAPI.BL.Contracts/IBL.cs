@@ -47,5 +47,26 @@ namespace BusWebAPI.BL.Contracts
         /// <returns>משתמש חדש</returns>
         User RegisterUser(RegisterUser registerUser);
 
+        /// <summary>
+        /// התחברות
+        /// </summary>
+        /// <param name="loginModel">מודל התחברות</param>
+        /// <returns></returns>
+        bool Login(LoginModel loginModel);
+
+        /// <summary>
+        /// קבלת משתמש לפי מס' אישי
+        /// </summary>
+        /// <param name="personalID">מס' אישי</param>
+        /// <returns>משתמש אם קיים</returns>
+        User GetUserByPersonalID(int personalID);
+
+        /// <summary>
+        /// קבלת משתמש לפי מזהה
+        /// </summary>
+        /// <param name="userID">מס' מזהה</param>
+        /// <returns>משתמש</returns>
+        User GetUserByID(int userID);
+
     }
 }

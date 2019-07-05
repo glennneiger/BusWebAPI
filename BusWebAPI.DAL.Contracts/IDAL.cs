@@ -48,5 +48,19 @@ namespace BusWebAPI.DAL.Contracts
         /// <param name="user">מודל משתמש</param>
         /// <returns>משתמש חדש</returns>
         User RegisterUser(User user);
+
+        /// <summary>
+        /// קבלת משתמש לפי מס' אישי
+        /// </summary>
+        /// <param name="personalID">מס' אישי</param>
+        /// <returns>משתמש אם קיים</returns>
+        User GetUserByPersonalID(int personalID);
+
+        /// <summary>
+        /// קבלת משתמש לפי מזהה
+        /// </summary>
+        /// <param name="userID">מס' מזהה</param>
+        /// <returns>משתמש</returns>
+        User GetUserByID(int userID);
     }
 }

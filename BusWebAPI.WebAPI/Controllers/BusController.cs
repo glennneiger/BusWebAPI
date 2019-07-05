@@ -4,6 +4,7 @@ using Aleph1.WebAPI.ExceptionHandler;
 using BusWebAPI.BL.Contracts;
 using BusWebAPI.Models;
 using BusWebAPI.Models.PostModels;
+using BusWebAPI.WebAPI.Security;
 using System.Linq;
 using System.Web.Http;
 
@@ -29,7 +30,7 @@ namespace BusWebAPI.WebAPI.Controllers
         /// קבלת כל ההסעות
         /// </summary>
         /// <returns>רשימה של הסעות כולל רשומים</returns>
-        [Logged, HttpGet, Route("api/Bus/GetBusList"), FriendlyMessage("לא ניתן להציג את ההסעות כרגע")]
+        [Authenticated(AllowAnonymous = true), Logged, HttpGet, Route("api/Bus/GetBusList"), FriendlyMessage("לא ניתן להציג את ההסעות כרגע")]
         public IQueryable<Bus> GetBusList()
         {
             return BL.GetBusList();
@@ -40,7 +41,7 @@ namespace BusWebAPI.WebAPI.Controllers
         /// </summary>
         /// <param name="busID">מס' מזהה</param>
         /// <returns>קבלת הסעה כולל רשומים אליה</returns>
-        [Logged, HttpGet, Route("api/Bus/GetBusByID"), FriendlyMessage("הסעה לא נמצאה")]
+        [Authenticated(AllowAnonymous = true), Logged, HttpGet, Route("api/Bus/GetBusByID"), FriendlyMessage("הסעה לא נמצאה")]
         public Bus GetBusByID(int busID)
         {
             return BL.GetBusByID(busID);
@@ -51,7 +52,7 @@ namespace BusWebAPI.WebAPI.Controllers
         /// </summary>
         /// <param name="newBus">הסעה חדשה</param>
         /// <returns>ההסעה שנוספה</returns>
-        [Logged, HttpPost, Route("api/Bus/AddBus"), FriendlyMessage("הוספת הסעה לא הצליחה")]
+        [Authenticated(AllowAnonymous = false, RequireManagerAccess = true), Logged, HttpPost, Route("api/Bus/AddBus"), FriendlyMessage("הוספת הסעה לא הצליחה")]
         public Bus AddBus(AddBus newBus)
         {
             return BL.AddBus(newBus);
