@@ -26,6 +26,11 @@ namespace BusWebAPI.DAL.Moq
             throw new System.NotImplementedException();
         }
 
+        public User RegisterUser(User user)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void SaveChanges()
         {
             throw new System.NotImplementedException();

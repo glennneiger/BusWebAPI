@@ -9,6 +9,9 @@ namespace BusWebAPI.BL.Contracts
     /// </summary>
     public interface IBL
     {
+
+        #region Bus & People On Bus
+
         /// <summary>
         /// רשימת של הסעות
         /// </summary>
@@ -34,6 +37,15 @@ namespace BusWebAPI.BL.Contracts
         /// <param name="registerToBus">מודל בן אדם בהסעה</param>
         /// <returns>רשום חדש</returns>
         PeopleOnBus RegisterToBus(RegisterToBus registerToBus);
+
+        #endregion
+
+        /// <summary>
+        /// הרשמה למערכת ניהול
+        /// </summary>
+        /// <param name="registerUser">פרטים להרשמה</param>
+        /// <returns>משתמש חדש</returns>
+        User RegisterUser(RegisterUser registerUser);
 
     }
 }

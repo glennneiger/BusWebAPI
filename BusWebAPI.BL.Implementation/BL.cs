@@ -11,12 +11,15 @@ namespace BusWebAPI.BL.Implementation
     internal class BL : IBL
     {
         private readonly IDAL DAL;
+        private readonly HashHelpers hashHelpers;
 
-        public BL(IDAL DAL)
+        public BL(IDAL DAL, HashHelpers hashHelpers)
         {
             this.DAL = DAL;
+            this.hashHelpers = hashHelpers;
         }
 
+        #region Bus & People On Bus
 
         [Logged]
         public IQueryable<Bus> GetBusList()
@@ -42,6 +45,7 @@ namespace BusWebAPI.BL.Implementation
             return DAL.GetBusByID(busID);
         }
 
+        [Logged]
         public Bus AddBus(AddBus newBus)
         {
             Bus bus = new Bus()
@@ -60,6 +64,7 @@ namespace BusWebAPI.BL.Implementation
             return bus;
         }
 
+        [Logged]
         public PeopleOnBus RegisterToBus(RegisterToBus registerToBus)
         {
             PeopleOnBus peopleOnBus = new PeopleOnBus()
@@ -77,6 +82,30 @@ namespace BusWebAPI.BL.Implementation
             DAL.RegisterToBus(peopleOnBus);
             DAL.SaveChanges();
             return peopleOnBus;
+        }
+
+        #endregion
+
+
+        public User RegisterUser(RegisterUser registerUser)
+        {
+            Password password = new Password()
+            {
+                HashedPassword = hashHelpers.HashPassword(registerUser.Password)
+            };
+
+            User user = new User()
+            {
+                PersonalID = registerUser.PersonalID,
+                Password = password,
+                IsAdmin = false,
+                IsActive = false
+            };
+
+            DAL.RegisterUser(user);
+            DAL.SaveChanges();
+
+            return user;
         }
     }
 }

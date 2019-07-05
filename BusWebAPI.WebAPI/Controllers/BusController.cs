@@ -57,16 +57,5 @@ namespace BusWebAPI.WebAPI.Controllers
             return BL.AddBus(newBus);
         }
 
-        /// <summary>
-        /// הרשמה להסעה
-        /// </summary>
-        /// <param name="registerToBus">הרשמה להסעה</param>
-        /// <returns>הנרשם החדש</returns>
-        [Logged, HttpPost, Route("api/Bus/RegisterToBus"), FriendlyMessage("לא ניתן להרשם כרגע להסעה")]
-        public PeopleOnBus RegisterToBus(RegisterToBus registerToBus)
-        {
-            return BL.RegisterToBus(registerToBus);
-        }
-
     }
 }

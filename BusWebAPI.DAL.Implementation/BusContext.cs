@@ -12,6 +12,7 @@ namespace BusWebAPI.DAL.Implementation
 
         public DbSet<Bus> Bus { get; set; }
         public DbSet<PeopleOnBus> PeopleOnBus { get; set; }
+        public DbSet<User> User { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

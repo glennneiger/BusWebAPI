@@ -13,6 +13,7 @@ namespace BusWebAPI.BL.Implementation
         public void Initialize(IModuleRegistrar registrar)
         {
             registrar.RegisterType<IBL, BL>();
+            registrar.RegisterTypeAsSingelton<HashHelpers, HashHelpers>();
         }
     }
 }

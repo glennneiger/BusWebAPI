@@ -14,6 +14,7 @@ namespace BusWebAPI.DAL.Contracts
         /// </summary>
         void SaveChanges();
 
+        #region Bus & People On Bus
         /// <summary>
         /// רשימת הסעות
         /// </summary>
@@ -39,5 +40,13 @@ namespace BusWebAPI.DAL.Contracts
         /// <param name="peopleOnBus">מודל בן אדם בהסעה</param>
         /// <returns>רשום חדש</returns>
         PeopleOnBus RegisterToBus(PeopleOnBus peopleOnBus);
+        #endregion
+
+        /// <summary>
+        /// הרשמה למערכת ניהול
+        /// </summary>
+        /// <param name="user">מודל משתמש</param>
+        /// <returns>משתמש חדש</returns>
+        User RegisterUser(User user);
     }
 }

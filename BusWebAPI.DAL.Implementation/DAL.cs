@@ -20,6 +20,7 @@ namespace BusWebAPI.DAL.Implementation
             busContext.SaveChanges();
         }
 
+        #region Bus & People On Bus
         [Logged]
         public IQueryable<Bus> GetBusList()
         {
@@ -32,14 +33,23 @@ namespace BusWebAPI.DAL.Implementation
             return busContext.Bus.IncludeFilter(b => b.PeopleOnBus.Where(p => p.IsVerified == true)).FirstOrDefault(b => b.ID == busID);
         }
 
+        [Logged]
         public Bus AddBus(Bus bus)
         {
             return busContext.Bus.Add(bus);
         }
 
+        [Logged]
         public PeopleOnBus RegisterToBus(PeopleOnBus peopleOnBus)
         {
             return busContext.PeopleOnBus.Add(peopleOnBus);
+        }
+        #endregion
+
+        [Logged]
+        public User RegisterUser(User user)
+        {
+            return busContext.User.Add(user);
         }
     }
 }
