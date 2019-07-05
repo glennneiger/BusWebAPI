@@ -143,6 +143,34 @@ namespace BusWebAPI.BL.Implementation
             return DAL.GetUserByID(userID);
         }
 
+        public IQueryable<User> GetUserRequests()
+        {
+            return DAL.GetUserRequests();
+        }
+
+        public void VerifyUserRequest(VerifyUser verifyUser)
+        {
+            User user = DAL.GetUserByID(verifyUser.UserID);
+            if(user != null)
+            {
+                user.IsActive = true;
+                user.IsAdmin = verifyUser.IsAdmin;
+                DAL.SaveChanges();
+            } else
+            {
+                throw new Exception("המשתמש אותו ניסית לעדכן לא קיים");
+            }
+
+
+        }
+
+        public void DeclineUserRequest(int userID)
+        {
+            User user = DAL.GetUserByID(userID);
+            DAL.DeclineUserRequest(user);
+            DAL.SaveChanges();
+        }
+
         #endregion
 
 

@@ -70,6 +70,17 @@ namespace BusWebAPI.DAL.Contracts
         /// <returns>משתמש</returns>
         User GetUserByID(int userID);
 
+        /// <summary>
+        /// רשימת בקשות
+        /// </summary>
+        /// <returns>רשימת מבקשי ההרשאות לפאנל הניהול</returns>
+        IQueryable<User> GetUserRequests();
+
+        /// <summary>
+        /// דחיית משתמש
+        /// </summary>
+        void DeclineUserRequest(User user);
+
         #endregion
 
     }

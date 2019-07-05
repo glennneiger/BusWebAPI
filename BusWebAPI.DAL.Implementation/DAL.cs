@@ -71,6 +71,16 @@ namespace BusWebAPI.DAL.Implementation
         {
             return busContext.User.Include(u => u.Password).FirstOrDefault(u => u.ID == userID);
         }
+
+        public IQueryable<User> GetUserRequests()
+        {
+            return busContext.User.Where(u => u.IsActive == false).AsQueryable();
+        }
+
+        public void DeclineUserRequest(User user)
+        {
+            busContext.User.Remove(user);
+        }
         #endregion
 
     }

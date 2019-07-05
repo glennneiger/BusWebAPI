@@ -177,6 +177,7 @@
     <Compile Include="Classes\SettingsManager.cs" />
     <Compile Include="Classes\UnityValidatorFactory.cs" />
     <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\PeopleOnBusController.cs" />
     <Compile Include="Controllers\BusController.cs" />
     <Compile Include="Controllers\AuthController.cs" />

@@ -11,6 +11,11 @@ namespace BusWebAPI.DAL.Moq
             throw new System.NotImplementedException();
         }
 
+        public void DeclineUserRequest(User user)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public Bus GetBusByID(int busID)
         {
             throw new System.NotImplementedException();
@@ -32,6 +37,11 @@ namespace BusWebAPI.DAL.Moq
         }
 
         public User GetUserByPersonalID(int personalID)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public IQueryable<User> GetUserRequests()
         {
             throw new System.NotImplementedException();
         }

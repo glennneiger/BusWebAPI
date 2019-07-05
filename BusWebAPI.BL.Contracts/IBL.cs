@@ -75,6 +75,22 @@ namespace BusWebAPI.BL.Contracts
         /// <returns>רשימה של הסעות שזמנם עבר</returns>
         IQueryable<Bus> GetBusHistory();
 
+        /// <summary>
+        /// רשימת בקשות
+        /// </summary>
+        /// <returns>רשימת מבקשי ההרשאות לפאנל הניהול</returns>
+        IQueryable<User> GetUserRequests();
+        
+        /// <summary>
+        /// אישור משתמש
+        /// </summary>
+        void VerifyUserRequest(VerifyUser verifyUser);
+
+        /// <summary>
+        /// דחיית משתמש
+        /// </summary>
+        void DeclineUserRequest(int userID);
+
         #endregion
     }
 }
