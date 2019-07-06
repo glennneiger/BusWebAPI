@@ -30,7 +30,7 @@ namespace BusWebAPI.WebAPI.Controllers
         /// </summary>
         /// <param name="registerUser">נתונים הכרחיים להרשמה</param>
         /// <returns>משתמש חדש</returns>
-        [Logged, HttpPost, Route("api/Auth/Register"), FriendlyMessage("לא ניתן להשלים את תהליך ההרשמה כרגע")]
+        [Authenticated(AllowAnonymous = true), Logged, HttpPost, Route("api/Auth/Register"), FriendlyMessage("לא ניתן להשלים את תהליך ההרשמה כרגע")]
         public User RegisterUser(RegisterUser registerUser)
         {
             return BL.RegisterUser(registerUser);
