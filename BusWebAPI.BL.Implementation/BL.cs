@@ -196,6 +196,23 @@ namespace BusWebAPI.BL.Implementation
             DAL.SaveChanges();
         }
 
+        public void ChangePassword(ChangePassword changePassword, int userUniqueID)
+        {
+            User user = DAL.GetUserByID(userUniqueID);
+            if(hashHelpers.ValidatePassword(changePassword.OldPassword, user.Password.HashedPassword))
+            {
+                Password password = new Password()
+                {
+                    HashedPassword = hashHelpers.HashPassword(changePassword.NewPassword)
+                };
+                user.Password = password;
+                DAL.SaveChanges();
+            } else
+            {
+                throw new Exception("הססמא לא תואמת לססמא השמורה במערכת.");
+            }
+        }
+
         #endregion
 
 

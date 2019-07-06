@@ -4,6 +4,8 @@ using Aleph1.WebAPI.ExceptionHandler;
 using BusWebAPI.BL.Contracts;
 using BusWebAPI.Models;
 using BusWebAPI.Models.PostModels;
+using BusWebAPI.Models.Security;
+using BusWebAPI.Security.Contracts;
 using BusWebAPI.WebAPI.Security;
 using System.Linq;
 using System.Web.Http;
@@ -15,15 +17,18 @@ namespace BusWebAPI.WebAPI.Controllers
     /// </summary>
     public class UserController : ApiController
     {
+        private readonly ISecurity SecurityService;
+
         private readonly IBL BL;
 
         /// <summary>
         /// בנאי
         /// </summary>
         /// <param name="BL">Business Logic</param>
-        public UserController(IBL BL)
+        public UserController(IBL BL, ISecurity SecurityService)
         {
             this.BL = BL;
+            this.SecurityService = SecurityService;
         }
 
         /// <summary>
@@ -54,6 +59,19 @@ namespace BusWebAPI.WebAPI.Controllers
         public void DeclineUserRequest(int userID)
         {
             BL.DeclineUserRequest(userID);
+        }
+
+        /// <summary>
+        /// שינוי ססמא
+        /// </summary>
+        /// <param name="changePassword">מודל לשינוי ססמא</param>
+        [Authenticated(AllowAnonymous = false, RequireManagerAccess = false), Logged, HttpPut, Route("api/User/ChangePassword"), FriendlyMessage("בעיה במהלך שינוי הססמא")]
+        public void ChangePassword(ChangePassword changePassword)
+        {
+            // קבלת מזהה המשתמש דרך הטיקט המיוחד שלו - בכך משתמשים לא יכולים "לעבוד" על המערכת
+            AuthenticationInfo authInfo = Request.Headers.GetAuthenticationInfo(SecurityService);
+
+            BL.ChangePassword(changePassword, authInfo.UserUniqueID);
         }
     }
 }

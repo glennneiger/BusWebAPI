@@ -1,5 +1,5 @@
 ﻿
-namespace BusWebAPI.Models
+namespace BusWebAPI.Models.PostModels
 {
     /// <summary>
     /// מודל התחברות

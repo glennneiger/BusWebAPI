@@ -108,6 +108,13 @@ namespace BusWebAPI.BL.Contracts
         /// </summary>
         void DeclineUserRequest(int userID);
 
+        /// <summary>
+        /// שינוי ססמא
+        /// </summary>
+        /// <param name="changePassword">מודל שינוי ססמא</param>
+        /// <param name="userUniqueID">יוזר לו משנים ססמא</param>
+        void ChangePassword(ChangePassword changePassword, int userUniqueID);
+
         #endregion
     }
 }
