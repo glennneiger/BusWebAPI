@@ -115,6 +115,22 @@ namespace BusWebAPI.BL.Contracts
         /// <param name="userUniqueID">יוזר לו משנים ססמא</param>
         void ChangePassword(ChangePassword changePassword, int userUniqueID);
 
+        /// <summary>
+        /// קבלת כל המשתמשים
+        /// </summary>
+        /// <returns>רשימה של כל המשתמשים</returns>
+        IQueryable<User> GetAllUsers();
+
+        /// <summary>
+        /// שינוי הרשאות משתמש
+        /// </summary>
+        void ChangePerms(ChangePerms changePerms);
+
+        /// <summary>
+        /// מחיקת משתמש
+        /// </summary>
+        void DeleteUser(int userID);
+
         #endregion
     }
 }

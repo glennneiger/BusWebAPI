@@ -16,6 +16,16 @@ namespace BusWebAPI.DAL.Moq
             throw new System.NotImplementedException();
         }
 
+        public void DeleteUser(User user)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public IQueryable<User> GetAllUsers()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public Bus GetBusByID(int busID)
         {
             throw new System.NotImplementedException();

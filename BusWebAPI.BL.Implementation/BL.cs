@@ -213,6 +213,25 @@ namespace BusWebAPI.BL.Implementation
             }
         }
 
+        public IQueryable<User> GetAllUsers()
+        {
+            return DAL.GetAllUsers();
+        }
+
+        public void ChangePerms(ChangePerms changePerms)
+        {
+            User user = DAL.GetUserByID(changePerms.UserID);
+            user.IsAdmin = changePerms.IsAdmin;
+            DAL.SaveChanges();
+        }
+
+        public void DeleteUser(int userID)
+        {
+            User user = DAL.GetUserByID(userID);
+            DAL.DeleteUser(user);
+            DAL.SaveChanges();
+        }
+
         #endregion
 
 

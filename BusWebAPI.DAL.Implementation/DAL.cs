@@ -94,6 +94,16 @@ namespace BusWebAPI.DAL.Implementation
         {
             busContext.User.Remove(user);
         }
+
+        public IQueryable<User> GetAllUsers()
+        {
+            return busContext.User.AsQueryable().AsNoTracking();
+        }
+
+        public void DeleteUser(User user)
+        {
+            busContext.User.Remove(user);
+        }
         #endregion
 
     }

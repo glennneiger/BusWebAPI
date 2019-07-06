@@ -73,5 +73,35 @@ namespace BusWebAPI.WebAPI.Controllers
 
             BL.ChangePassword(changePassword, authInfo.UserUniqueID);
         }
+
+        /// <summary>
+        /// קבלת רשימת משתמשים
+        /// </summary>
+        /// <returns>רשימה של משתמשים</returns>
+        [Authenticated(AllowAnonymous = false, RequireManagerAccess = true), Logged, HttpGet, Route("api/User/GetAllUsers"), FriendlyMessage("לא ניתן לקבל את רשימת המשתמשים כרגע")]
+        public IQueryable<User> GetAllUsers()
+        {
+            return BL.GetAllUsers();
+        }
+
+        /// <summary>
+        /// שינוי הרשאה למשתמשים
+        /// </summary>
+        /// <param name="changePerms">מודל שינוי הרשאות</param>
+        [Authenticated(AllowAnonymous = false, RequireManagerAccess = true), Logged, HttpPut, Route("api/User/ChangePerms"), FriendlyMessage("לא ניתן לקבל את רשימת המשתמשים כרגע")]
+        public void ChangePerms(ChangePerms changePerms)
+        {
+            BL.ChangePerms(changePerms);
+        }
+
+        /// <summary>
+        /// מחיקת משתמש
+        /// </summary>
+        /// <param name="userID">משתמש אותו מעוניינים למחוק</param>
+        [Authenticated(AllowAnonymous = false, RequireManagerAccess = true), Logged, HttpDelete, Route("api/User/DeleteUser"), FriendlyMessage("לא ניתן לקבל את רשימת המשתמשים כרגע")]
+        public void DeleteUser(int userID)
+        {
+            BL.DeleteUser(userID);
+        }
     }
 }

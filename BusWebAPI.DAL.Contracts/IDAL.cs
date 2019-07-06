@@ -94,6 +94,18 @@ namespace BusWebAPI.DAL.Contracts
         /// </summary>
         void DeclineUserRequest(User user);
 
+        /// <summary>
+        /// קבלת כל המשתמשים
+        /// </summary>
+        /// <returns>רשימה של כל המשתמשים</returns>
+        IQueryable<User> GetAllUsers();
+
+        /// <summary>
+        /// מחיקת משתמש
+        /// <param name="user">משתמש למחיקה</param>
+        /// </summary>
+        void DeleteUser(User user);
+
         #endregion
 
     }
