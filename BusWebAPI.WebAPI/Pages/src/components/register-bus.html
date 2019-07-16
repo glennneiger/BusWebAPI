@@ -1,0 +1,33 @@
+<template>
+  <div class="a1-column a1-center-items-h a1-full-height a1-center-items-v">
+    <!-- Default form contact -->
+<form class="text-center border border-light p-5" action="#!">
+
+    <p class="h4 mb-4">הרשמה להסעה</p>
+
+    <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="שם מלא" value.bind="FullName">
+
+    <input type="number" id="defaultContactFormEmail" class="form-control mb-4" placeholder="מספר אישי" value.bind="PersonalID">
+
+    <select class="browser-default custom-select mb-4" value.bind="Team">
+        <option value="" disabled>גף וצוות</option>
+        <option value="1" selected>Feedback</option>
+        <option value="2">Report a bug</option>
+        <option value="3">Feature request</option>
+        <option value="4">Feature request</option>
+    </select>
+
+    <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="סיבת יציאה" value.bind="Reason">
+ 
+    <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="שם מפקד" value.bind="CommanderName">
+
+    <div class="form-group">
+        <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="הערות" value.bind="Notes"></textarea>
+    </div>
+
+    <button class="btn btn-info btn-block" type="submit" click.delegate="submit()">הרשמה</button>
+
+</form>
+
+  </div>
+</template>

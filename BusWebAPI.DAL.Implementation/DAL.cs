@@ -25,13 +25,13 @@ namespace BusWebAPI.DAL.Implementation
         [Logged]
         public IQueryable<Bus> GetBusList()
         {
-            return busContext.Bus.IncludeFilter(u => u.PeopleOnBus.Where(p => p.IsVerified == true)).Where(b => b.IsActive == true).AsQueryable();
+            return busContext.Bus.IncludeFilter(u => u.PeopleOnBus).Where(b => b.IsActive == true).AsQueryable();
         }
 
         [Logged]
         public IQueryable<Bus> GetBusHistory()
         {
-            return busContext.Bus.IncludeFilter(b => b.PeopleOnBus.Where(p => p.IsVerified == true)).Where(b => b.IsActive == false).AsQueryable();
+            return busContext.Bus.IncludeFilter(b => b.PeopleOnBus).Where(b => b.IsActive == false).AsQueryable();
         }
 
         [Logged]

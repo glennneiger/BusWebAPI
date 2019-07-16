@@ -1,0 +1,39 @@
+<template>
+  <div class="a1-column a1-padding">
+    <h4>פרטי הסעה</h4>
+
+    <div class="a1-row">
+      <span><strong>מוצא: </strong></span>
+      <span>${bus.From}</span>
+    </div>
+    <div class="a1-row">
+      <span><strong>יעד: </strong></span>
+      <span>${bus.To}</span>
+    </div>
+    <div class="a1-row">
+      <span><strong>תאריך ושעה: </strong></span>
+      <span>${bus.DateTime}</span>
+    </div>
+    <div class="a1-row">
+      <span><strong>תפוסה: </strong></span>
+      <span>${bus.NumberOfSeats} / ${bus.SeatsTaken}</span>
+    </div>
+    <div class="a1-row">
+      <span><strong>הערות: </strong></span>
+      <span>${bus.Comments}</span>
+    </div>
+    <div class="a1-row">
+      <button class="btn btn-sm btn-info" click.delegate="registerToBus()">הרשמה</button>
+    </div>
+
+    <h4>פרטי רשומים להסעה</h4>
+    <span show.bind="!bus.SeatsTaken">אין רשומים להסעה.</span>
+    <div class="a1-row" repeat.for="people of bus.PeopleOnBus">
+      <span>${people.FullName}</span>
+      <span>${people.PersonalNumber}</span>
+      <span show.bind="people.IsVerified" class="badge badge-success">מאושר</span>
+      <span show.bind="people.IsHidden" class="badge badge-danger">לא מאושר</span>
+      <span show.bind="!people.IsHidden && !people.IsVerified" class="badge badge-warning">ממתין לאישור</span>
+    </div>
+  </div>
+</template>

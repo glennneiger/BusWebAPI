@@ -1,0 +1,33 @@
+<template>
+  <p class="display-4 text-center a1-padding-tb">
+    כל ההסעות הזמינות
+  </p>
+
+  <table class="table">
+      <thead class="black white-text">
+        <tr>
+          <th scope="col">מוצא</th>
+          <th scope="col">יעד</th>
+          <th scope="col">תאריך ושעה</th>
+          <th scope="col">תפוסה</th>
+          <th scope="col">הערות</th>
+          <th scope="col">צפייה</th>
+          <th scope="col">הרשמה</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr repeat.for="bus of busList">
+          <td>span</td>
+          <td>${bus.To}</td>
+          <td>${bus.DateTime}</td>
+          <td>${bus.NumberOfSeats} / ${bus.SeatsTaken}</td>
+          <td>${bus.Comments}</td>
+          <td><button class="btn btn-sm btn-primary" click.delegate="viewBus(bus.ID)">צפייה עין</button></td>
+          <td><button class="btn btn-sm btn-info" click.delegate="registerBus(bus.ID)">הרשמה עפרון</button></td>
+        </tr>
+      </tbody>
+    </table>
+    
+  
+
+</template>
