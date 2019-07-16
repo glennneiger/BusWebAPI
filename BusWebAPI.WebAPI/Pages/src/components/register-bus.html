@@ -5,24 +5,24 @@
 
     <p class="h4 mb-4">הרשמה להסעה</p>
 
-    <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="שם מלא" value.bind="FullName">
+    <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="שם מלא" value.bind="fullName" required>
 
-    <input type="number" id="defaultContactFormEmail" class="form-control mb-4" placeholder="מספר אישי" value.bind="PersonalID">
+    <input type="number" id="defaultContactFormEmail" class="form-control mb-4" placeholder="מספר אישי" value.bind="personalID" required>
 
-    <select class="browser-default custom-select mb-4" value.bind="Team">
-        <option value="" disabled>גף וצוות</option>
-        <option value="1" selected>Feedback</option>
-        <option value="2">Report a bug</option>
-        <option value="3">Feature request</option>
-        <option value="4">Feature request</option>
+    <select class="browser-default custom-select mb-4" value.bind="team" required>
+        <option disabled>גף וצוות</option>
+        <option model.bind="Feedback">Feedback</option>
+        <option>Report a bug</option>
+        <option>Feature request</option>
+        <option>Feature request</option>
     </select>
 
-    <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="סיבת יציאה" value.bind="Reason">
+    <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="סיבת יציאה" value.bind="reason" required>
  
-    <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="שם מפקד" value.bind="CommanderName">
+    <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="שם מפקד" value.bind="commanderName" required>
 
     <div class="form-group">
-        <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="הערות" value.bind="Notes"></textarea>
+        <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="הערות" value.bind="notes"></textarea>
     </div>
 
     <button class="btn btn-info btn-block" type="submit" click.delegate="submit()">הרשמה</button>

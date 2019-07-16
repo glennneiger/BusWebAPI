@@ -1,10 +1,29 @@
 import { autoinject } from "aurelia-framework";
 import { AuthHttpClient } from './../resources/auth-http-client';
+import * as toastr from 'toastr';
 
 @autoinject()
 export class BusService {
 
-  constructor(private authHttpClient: AuthHttpClient){}
+  constructor(private authHttpClient: AuthHttpClient){
+    toastr.options = {
+      "closeButton": false,
+      "debug": false,
+      "newestOnTop": false,
+      "progressBar": false,
+      "positionClass": "toast-bottom-right",
+      "preventDuplicates": true,
+      "onclick": null,
+      "showDuration": "300",
+      "hideDuration": "1000",
+      "timeOut": "5000",
+      "extendedTimeOut": "1000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    }
+  }
 
   GetBusList() {
     return this.authHttpClient.fetch("/api/Bus/GetBusList")
