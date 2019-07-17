@@ -1,6 +1,7 @@
 import { AuthService } from './../../services/auth-service';
 import { Router } from 'aurelia-router';
 import { autoinject } from 'aurelia-framework';
+import * as toastr from 'toastr';
 
 @autoinject()
 export class Navbar {
@@ -20,7 +21,9 @@ export class Navbar {
   checkIfLogged() {
     this.authService.checkIfLogged()
     .then(_ => this.isLogged = true)
-    .catch(_ => this.isLogged = false);
+    .catch(_ => {
+      this.isLogged = false;
+    });
     this.authService.checkIfAdmin()
     .then(_ => this.isAdmin = true)
     .catch(_ => this.isAdmin = false);  
@@ -29,6 +32,8 @@ export class Navbar {
   logout() {
     this.authService.logout();
     this.checkIfLogged();
+    toastr.error("התנתקת בהצלחה");
+    this.router.navigateToRoute('home');
   }
 
 }

@@ -35,4 +35,9 @@ export class BusService {
     .then(res => res.json());
   } 
 
+  getBusHistory() {
+    return this.authHttpClient.fetch("/api/Bus/GetBusHistory")
+    .then(res => res.json());
+  }
+
 }

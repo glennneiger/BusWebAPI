@@ -6,9 +6,8 @@ import { Router } from "aurelia-router";
 
 @autoinject()
 export class Admin {    
-  message: string;
   
-  constructor(private authService: AuthService, private busService: BusService) {}
+  constructor(private authService: AuthService, private busService: BusService, private router: Router) {}
   busList: any;
   seats: string;
 
@@ -26,6 +25,10 @@ export class Admin {
         });
       });
     });
+  }
+
+  viewBusAsAdmin(busID) {
+    this.router.navigateToRoute('view-bus-admin', {busID});
   }
 
 }

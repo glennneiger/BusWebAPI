@@ -13,8 +13,13 @@
         <li class="nav-item" class.bind="router.currentInstruction.config.name === 'login' ? 'active' : ''" show.bind="!isLogged || !isAdmin">
           <a class="nav-link" route-href="login">התחברות</a>
         </li>
-        <li class="nav-item" class.bind="router.currentInstruction.config.name === 'admin' ? 'active' : ''"
-          show.bind="isAdmin">
+        <li class="nav-item" class.bind="
+          router.currentInstruction.config.name === 'admin' ||
+          router.currentInstruction.config.name === 'admin-history' ||
+          router.currentInstruction.config.name === 'view-bus-admin' ||
+          router.currentInstruction.config.name === 'view-bus-history-admin'
+          ? 'active' : ''"
+          show.bind="isLogged">
           <a class="nav-link" route-href="admin">פאנל ניהול</a>
         </li>
         <li class="nav-item" show.bind="isLogged || isAdmin">

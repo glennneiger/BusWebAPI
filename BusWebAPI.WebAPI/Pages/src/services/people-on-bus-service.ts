@@ -27,12 +27,21 @@ export class PeopleOnBusService {
     }
   }
 
-  registerToBus(registerToBus) {
-    return this.authHttpClient.fetch("/api/PEopleOnbus/RegisterToBus", {
-      method: "POST",
-      body: json(registerToBus)
-    })
-    .then(res => res.json())
-    .catch(_ => toastr.danger("לא ניתן להרשם."));
+  async registerToBus(registerToBus) {
+    try {
+      const res = await this.authHttpClient.fetch("/api/PeopleOnbus/RegisterToBus", {
+        method: "POST",
+        body: json(registerToBus)
+      });
+      return await res.json();
+    }
+    catch (_) {
+      return toastr.danger("לא ניתן להרשם.");
+    }
+  }
+
+  async getRideRequests(busID) {
+    const res = await this.authHttpClient.fetch('/api/PeopleOnBus/GetRideRequests?busID=' + busID);
+    return await res.json();
   }
 }

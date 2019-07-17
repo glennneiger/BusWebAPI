@@ -1,28 +1,9 @@
 <template>
   <require from="../resources/elements/navbar"></require>
   <navbar style="direction: rtl;"></navbar>
-  
-  <nav class="navbar navbar-expand-lg navbar-dark default-color a1-margin-tb">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">כל ההסעות <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">היסטוריית הסעות</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">aaaa</a>
-          </li>
+  <require from="../resources/elements/admin-navbar"></require>
 
-        </ul>
-      </div>
-    </nav>
-
+  <admin-navbar></admin-navbar>
     
   <table class="table">
       <thead class="black white-text">
@@ -32,19 +13,17 @@
           <th scope="col">תאריך ושעה</th>
           <th scope="col">תפוסה</th>
           <th scope="col">הערות</th>
-          <th scope="col">צפייה</th>
-          <th scope="col">הרשמה</th>
+          <th scope="col">צפייה כמנהל</th>
         </tr>
       </thead>
       <tbody>
         <tr repeat.for="bus of busList">
-          <td>span</td>
+          <td><span>${bus.From}</span></td>
           <td>${bus.To}</td>
           <td>${bus.DateTime}</td>
           <td>${bus.NumberOfSeats} / ${bus.SeatsTaken}</td>
           <td>${bus.Comments}</td>
-          <td><button class="btn btn-sm btn-primary" click.delegate="viewBus(bus.ID)">צפייה עין</button></td>
-          <td><button class="btn btn-sm btn-info" click.delegate="registerBus(bus.ID)">הרשמה עפרון</button></td>
+          <td><button class="btn btn-sm btn-primary" click.delegate="viewBusAsAdmin(bus.ID)">צפייה עין</button></td>
         </tr>
       </tbody>
     </table>
