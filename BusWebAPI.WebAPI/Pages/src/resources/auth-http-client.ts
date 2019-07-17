@@ -10,7 +10,7 @@ export class AuthHttpClient extends HttpClient
 	public logger: Logger;
 
 	private authenticationKey: string = "AuthenticationInfo";
-	private ticketExpirationMin: number = 15;
+	private ticketExpirationMin: number = 999999;
 
 	constructor()
 	{

@@ -39,7 +39,6 @@ export class RegisterBus {
 
   activate(params) {
     this.busID = params.busID;
-    toastr.success("TEST");
   }
 
   submit() {
@@ -57,7 +56,7 @@ export class RegisterBus {
     this.pobService.registerToBus(registerToBus)
     .then(data => {
       this.router.navigateToRoute('view-bus', {busID: this.busID});
-      toastr.success("נרשמת בהצלחה. תצטרך להמתין לאישור מפקד \ מנהל");
+      toastr.success("נרשמת בהצלחה. תצטרך להמתין לאישור. בעמוד זה תוכל לבדוק את סטטוס הבקשה שלך");
     });
   }
 }

@@ -1,14 +1,17 @@
+import { Router } from 'aurelia-router';
 import { BusService } from './../services/bus-service';
 import { autoinject } from "aurelia-framework";
 import * as moment from 'moment';
 @autoinject()
 export class ViewBus {    
   
-  constructor(private busService: BusService) {}
+  constructor(private busService: BusService, private router: Router) {}
 
   bus: any;
+  busID: number;
   activate(params) {
-    this.busService.GetBusByID(params.busID)
+    this.busID = params.busID;
+    this.busService.getBusByID(params.busID)
     .then(data => {
       this.bus = data;
       this.bus.SeatsTaken = 0;
@@ -20,5 +23,9 @@ export class ViewBus {
       });
     });
 
+  }
+
+  registerToBus() {
+    this.router.navigateToRoute("register-bus", {busID: this.busID})
   }
 }

@@ -1,14 +1,14 @@
-import { autoinject } from "aurelia-framework";
-import { BusService } from "../services/bus-service";
+import { BusService } from './../services/bus-service';
+import { AuthService } from './../services/auth-service';
+import { autoinject } from 'aurelia-framework';
 import * as moment from 'moment';
 import { Router } from "aurelia-router";
 
 @autoinject()
-export class Home {    
+export class Admin {    
   message: string;
   
-  constructor(private busService: BusService, private router: Router) { }
-
+  constructor(private authService: AuthService, private busService: BusService) {}
   busList: any;
   seats: string;
 
@@ -28,11 +28,4 @@ export class Home {
     });
   }
 
-  viewBus(busID) {
-    this.router.navigateToRoute("view-bus", { busID })
-  }
-
-  registerBus(busID) {
-    this.router.navigateToRoute("register-bus", { busID })
-  }
 }

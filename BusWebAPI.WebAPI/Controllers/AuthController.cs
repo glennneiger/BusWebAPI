@@ -54,5 +54,17 @@ namespace BusWebAPI.WebAPI.Controllers
             }
 
         }
+
+        [Authenticated(AllowAnonymous = false, RequireManagerAccess = false), Logged, HttpGet, Route("api/Auth/CheckIfLogged")]
+        public string CheckIfLogged()
+        {
+            return null;
+        }
+
+        [Authenticated(AllowAnonymous = false, RequireManagerAccess = true), Logged, HttpGet, Route("api/Auth/CheckIfAdmin")]
+        public string CheckIfAdmin()
+        {
+            return null;
+        }
     }
 }

@@ -25,12 +25,12 @@ export class BusService {
     }
   }
 
-  GetBusList() {
+  getBusList() {
     return this.authHttpClient.fetch("/api/Bus/GetBusList")
     .then(res => res.json());
   }
 
-  GetBusByID(busID) {
+  getBusByID(busID) {
     return this.authHttpClient.fetch("/api/Bus/GetBusByID?busID=" + busID)
     .then(res => res.json());
   } 
