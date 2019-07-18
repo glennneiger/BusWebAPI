@@ -45,12 +45,10 @@ export class AuthService {
   }
 
   checkIfLogged() {
-    return this.authHttpClient.fetch("/api/Auth/CheckIfLogged")
-    .then(res => res.json())
+    return this.authHttpClient.fetch("/api/Auth/CheckIfLogged");
   }
 
   checkIfAdmin() {
-    return this.authHttpClient.fetch("/api/Auth/CheckIfAdmin")
-    .then(res => res.json());
+    return this.authHttpClient.fetch("/api/Auth/CheckIfAdmin");
   }
 }

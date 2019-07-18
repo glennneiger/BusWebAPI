@@ -19,15 +19,15 @@
       <tr repeat.for="user of userList">
         <td>${user.PersonalID}</td>
         <td>
-          <div class="a1-column a1-center-items-h">
-            <select class="browser-default custom-select mb-4 select-sm" value.bind="isAdmin" >
-              <option disabled>רמת הרשאות</option>
-              <option model.bind="true" selected.bind="user.IsAdmin">מנהל</option>
-              <option model.bind="false" selected.bind="!user.IsAdmin">משתמש</option>
-            </select>
-            <button click.delegate="toDo()" class="btn btn-sm btn-info">שינוי הרשאה</button>
+          <div class="a1-row a1-center-items-h a1-center-items-v">
+            <div class="a1-row">
+              <span show.bind="user.IsAdmin"><strong>מנהל</strong></span>
+              <span show.bind="!user.IsAdmin"><strong>מפקד</strong></span>
+            </div>
+            <div class="a1-row">
+              <button class="btn btn-sm btn-info" click.delegate="changePerms(user.ID)">החלפת הרשאה</button>
+            </div>
           </div>
-
         </td>
         <td>
           <button class="btn btn-sm btn-default" click.delegate="showResetConfirmBox = true"
@@ -35,22 +35,22 @@
           <div class="a1-column" show.bind="showResetConfirmBox">
             <span>נא לאשר את איפוס הססמא</span>
             <div class="a1-row a1-center-items-h">
-              <button class="btn btn-sm btn-success" click.delegate="resetPassword()">אישור איפוס</button>
+              <button class="btn btn-sm btn-success" click.delegate="resetPassword(user.ID)">אישור איפוס</button>
               <button class="btn btn-sm btn-danger" click.delegate="showResetConfirmBox = false">ביטול איפוס</button>
             </div>
           </div>
         </td>
-        <td show.bind="user.IsAdmin">המשתמש מאושר</td>
-        <td show.bind="!user.IsAdmin">
+        <td show.bind="user.IsActive">המשתמש מאושר</td>
+        <td show.bind="!user.IsActive">
           <div class="a1-row a1-center-items-h" show.bind="!showDeclineUserRequestBox">
-            <button class="btn btn-sm btn-success" click.delegate="verifyUserRequest">אישור בקשה</button>
+            <button class="btn btn-sm btn-success" click.delegate="verifyUserRequest(user.ID)">אישור בקשה</button>
             <button class="btn btn-sm btn-danger" click.delegate="showDeclineUserRequestBox = true">דחיית בקשה</button>
           </div>
 
           <div class="a1-column" show.bind="showDeclineUserRequestBox">
             <span>נא לאשר את דחיית הבקשה</span>
             <div class="a1-row a1-center-items-h">
-              <button class="btn btn-sm btn-success" click.delegate="toDO()">אישור דחייה</button>
+              <button class="btn btn-sm btn-success" click.delegate="declineUserRequest(user.ID)">אישור דחייה</button>
               <button class="btn btn-sm btn-danger" click.delegate="showDeclineUserRequestBox = false">ביטול
                 דחייה</button>
             </div>
@@ -62,7 +62,7 @@
           <div class="a1-column" show.bind="showDeleteUserConfirmBox">
             <span>נא לאשר את מחיקת המשתמש</span>
             <div class="a1-row a1-center-items-h">
-              <button class="btn btn-sm btn-success" click.delegate="toDO()">אישור מחיקה</button>
+              <button class="btn btn-sm btn-success" click.delegate="deleteUser(user.ID)">אישור מחיקה</button>
               <button class="btn btn-sm btn-danger" click.delegate="showDeleteUserConfirmBox = false">ביטול
                 מחיקה</button>
             </div>

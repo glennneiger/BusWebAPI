@@ -241,6 +241,17 @@ namespace BusWebAPI.BL.Implementation
             DAL.SaveChanges();
         }
 
+        public void ResetPassword(int userID)
+        {
+            User user = DAL.GetUserByID(userID);
+            Password newPassword = new Password()
+            {
+                HashedPassword = hashHelpers.HashPassword("Aa123456")
+            };
+            user.Password = newPassword;
+            DAL.SaveChanges();
+        }
+
         #endregion
 
 

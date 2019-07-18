@@ -55,7 +55,7 @@ namespace BusWebAPI.WebAPI.Controllers
         /// דחיית בקשה של משתמש ומחיקתה מהרשימה
         /// </summary>
         /// <param name="userID">מס' משתמש ייחודי</param>
-        [Authenticated(AllowAnonymous = false, RequireManagerAccess = true), Logged, HttpDelete, Route("api/User/DeclineUserRequest"), FriendlyMessage("לא ניתן לעדכן כרגע")]
+        [Authenticated(AllowAnonymous = false, RequireManagerAccess = true), Logged, HttpGet, Route("api/User/DeclineUserRequest"), FriendlyMessage("לא ניתן לעדכן כרגע")]
         public void DeclineUserRequest(int userID)
         {
             BL.DeclineUserRequest(userID);
@@ -98,10 +98,20 @@ namespace BusWebAPI.WebAPI.Controllers
         /// מחיקת משתמש
         /// </summary>
         /// <param name="userID">משתמש אותו מעוניינים למחוק</param>
-        [Authenticated(AllowAnonymous = false, RequireManagerAccess = true), Logged, HttpDelete, Route("api/User/DeleteUser"), FriendlyMessage("לא ניתן לקבל את רשימת המשתמשים כרגע")]
+        [Authenticated(AllowAnonymous = false, RequireManagerAccess = true), Logged, HttpGet, Route("api/User/DeleteUser"), FriendlyMessage("לא ניתן לקבל את רשימת המשתמשים כרגע")]
         public void DeleteUser(int userID)
         {
             BL.DeleteUser(userID);
+        }
+
+        /// <summary>
+        /// איפוס ססמא למשתמש - Aa123456
+        /// </summary>
+        /// <param name="userID">מזהה משתמש</param>
+        [Authenticated(AllowAnonymous = false, RequireManagerAccess = true), Logged, HttpGet, Route("api/User/ResetPassword")]
+        public void ResetPassword(int userID)
+        {
+            BL.ResetPassword(userID);
         }
     }
 }

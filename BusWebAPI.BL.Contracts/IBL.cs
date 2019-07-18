@@ -131,6 +131,12 @@ namespace BusWebAPI.BL.Contracts
         /// </summary>
         void DeleteUser(int userID);
 
+        /// <summary>
+        /// איפוס ססמא למשתמש
+        /// </summary>
+        /// <param name="userID">מזהה של משתמש</param>
+        void ResetPassword(int userID);
+
         #endregion
     }
 }
