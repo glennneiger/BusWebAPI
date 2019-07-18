@@ -37,7 +37,7 @@ namespace BusWebAPI.DAL.Implementation
         [Logged]
         public Bus GetBusByID(int busID)
         {
-            return busContext.Bus.Include(u => u.PeopleOnBus).Where(b => b.IsActive == true).FirstOrDefault(b => b.ID == busID);
+            return busContext.Bus.Include(u => u.PeopleOnBus).FirstOrDefault(b => b.ID == busID);
         }
 
         [Logged]
