@@ -19,7 +19,9 @@ import 'aleph1-layout/dist/main.min.css';
         { route: 'admin', name: 'admin', moduleId: PLATFORM.moduleName("components/admin"), title:'פאנל ניהול - ראשי' },
         { route: 'admin-history', name: 'admin-history', moduleId: PLATFORM.moduleName("components/admin-history"), title:'פאנל ניהול - היסטוריית הסעות' },
         { route: 'view-bus-admin/:busID', name: 'view-bus-admin', moduleId: PLATFORM.moduleName("components/view-bus-admin"), title:'פאנל ניהול - צפייה בהסעה' },
-        { route: 'view-bus-history-admin/:busID', name: 'view-bus-history-admin', moduleId: PLATFORM.moduleName("components/view-bus-history-admin"), title:'פאנל ניהול - צפייה בהסעה - היסטוריה' }
+        { route: 'view-bus-history-admin/:busID', name: 'view-bus-history-admin', moduleId: PLATFORM.moduleName("components/view-bus-history-admin"), title:'פאנל ניהול - צפייה בהסעה - היסטוריה' },
+        { route: 'admin-auth', name: 'admin-auth', moduleId: PLATFORM.moduleName("components/admin-auth"), title:'פאנל ניהול - הרשאות' },
+        { route: 'admin-change-password', name: 'admin-change-password', moduleId: PLATFORM.moduleName("components/admin-change-password"), title:'פאנל ניהול - שינוי ססמא' },
       ]);
     }
   }

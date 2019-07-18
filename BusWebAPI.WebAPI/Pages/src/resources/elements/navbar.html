@@ -17,7 +17,9 @@
           router.currentInstruction.config.name === 'admin' ||
           router.currentInstruction.config.name === 'admin-history' ||
           router.currentInstruction.config.name === 'view-bus-admin' ||
-          router.currentInstruction.config.name === 'view-bus-history-admin'
+          router.currentInstruction.config.name === 'view-bus-history-admin' ||
+          router.currentInstruction.config.name === 'admin-auth' ||
+          router.currentInstruction.config.name === 'admin-change-password'
           ? 'active' : ''"
           show.bind="isLogged">
           <a class="nav-link" route-href="admin">פאנל ניהול</a>

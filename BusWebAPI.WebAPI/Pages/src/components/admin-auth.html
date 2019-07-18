@@ -1,0 +1,74 @@
+<template>
+  <require from="../resources/elements/navbar"></require>
+  <navbar style="direction: rtl;"></navbar>
+  <require from="../resources/elements/admin-navbar"></require>
+
+  <admin-navbar></admin-navbar>
+
+  <table class="table">
+    <thead class="black white-text">
+      <tr>
+        <th scope="col">מספר אישי</th>
+        <th scope="col">הרשאות</th>
+        <th scope="col">איפוס ססמא</th>
+        <th scope="col">בקשת משתמש</th>
+        <th scope="col">מחיקת משתמש</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr repeat.for="user of userList">
+        <td>${user.PersonalID}</td>
+        <td>
+          <div class="a1-column a1-center-items-h">
+            <select class="browser-default custom-select mb-4 select-sm" value.bind="isAdmin" >
+              <option disabled>רמת הרשאות</option>
+              <option model.bind="true" selected.bind="user.IsAdmin">מנהל</option>
+              <option model.bind="false" selected.bind="!user.IsAdmin">משתמש</option>
+            </select>
+            <button click.delegate="toDo()" class="btn btn-sm btn-info">שינוי הרשאה</button>
+          </div>
+
+        </td>
+        <td>
+          <button class="btn btn-sm btn-default" click.delegate="showResetConfirmBox = true"
+            show.bind="!showResetConfirmBox">איפוס</button>
+          <div class="a1-column" show.bind="showResetConfirmBox">
+            <span>נא לאשר את איפוס הססמא</span>
+            <div class="a1-row a1-center-items-h">
+              <button class="btn btn-sm btn-success" click.delegate="resetPassword()">אישור איפוס</button>
+              <button class="btn btn-sm btn-danger" click.delegate="showResetConfirmBox = false">ביטול איפוס</button>
+            </div>
+          </div>
+        </td>
+        <td show.bind="user.IsAdmin">המשתמש מאושר</td>
+        <td show.bind="!user.IsAdmin">
+          <div class="a1-row a1-center-items-h" show.bind="!showDeclineUserRequestBox">
+            <button class="btn btn-sm btn-success" click.delegate="verifyUserRequest">אישור בקשה</button>
+            <button class="btn btn-sm btn-danger" click.delegate="showDeclineUserRequestBox = true">דחיית בקשה</button>
+          </div>
+
+          <div class="a1-column" show.bind="showDeclineUserRequestBox">
+            <span>נא לאשר את דחיית הבקשה</span>
+            <div class="a1-row a1-center-items-h">
+              <button class="btn btn-sm btn-success" click.delegate="toDO()">אישור דחייה</button>
+              <button class="btn btn-sm btn-danger" click.delegate="showDeclineUserRequestBox = false">ביטול
+                דחייה</button>
+            </div>
+          </div>
+        </td>
+        <td>
+          <button class="btn btn-sm btn-danger" click.delegate="showDeleteUserConfirmBox = true"
+            show.bind="!showDeleteUserConfirmBox">מחיקה פח</button>
+          <div class="a1-column" show.bind="showDeleteUserConfirmBox">
+            <span>נא לאשר את מחיקת המשתמש</span>
+            <div class="a1-row a1-center-items-h">
+              <button class="btn btn-sm btn-success" click.delegate="toDO()">אישור מחיקה</button>
+              <button class="btn btn-sm btn-danger" click.delegate="showDeleteUserConfirmBox = false">ביטול
+                מחיקה</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</template>
