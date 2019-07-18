@@ -67,22 +67,31 @@ namespace BusWebAPI.BL.Implementation
         [Logged]
         public PeopleOnBus RegisterToBus(RegisterToBus registerToBus)
         {
-            PeopleOnBus peopleOnBus = new PeopleOnBus()
-            {
-                FullName = registerToBus.FullName,
-                PersonalNumber = registerToBus.PersonalID,
-                Team = registerToBus.Team,
-                ExitReason = registerToBus.Reason,
-                MefakedName = registerToBus.CommanderName,
-                Comments = registerToBus.Notes,
-                BusID = registerToBus.BusID,
-                IsVerified = false,
-                IsHidden = false
-            };
+            Bus bus = DAL.GetBusByID(registerToBus.BusID);
 
-            DAL.RegisterToBus(peopleOnBus);
-            DAL.SaveChanges();
-            return peopleOnBus;
+            PeopleOnBus findPeople = bus.PeopleOnBus.FirstOrDefault(p => p.PersonalNumber == registerToBus.PersonalID);
+            if (findPeople == null)
+            {
+                PeopleOnBus peopleOnBus = new PeopleOnBus()
+                {
+                    FullName = registerToBus.FullName,
+                    PersonalNumber = registerToBus.PersonalID,
+                    Team = registerToBus.Team,
+                    ExitReason = registerToBus.Reason,
+                    MefakedName = registerToBus.CommanderName,
+                    Comments = registerToBus.Notes,
+                    BusID = registerToBus.BusID,
+                    IsVerified = false,
+                    IsHidden = false
+                };
+
+                DAL.RegisterToBus(peopleOnBus);
+                DAL.SaveChanges();
+                return peopleOnBus;
+            } else
+            {
+                throw new Exception("לא ניתן להרשם יותר מפעם אחת לכל הסעה");
+            }
         }
 
         [Logged]

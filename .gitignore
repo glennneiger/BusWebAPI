@@ -264,3 +264,5 @@ __pycache__/
 
 StarBS.WebAPI/Logs/StarBS.Trace.csv
 *.csv
+BusWebAPI.WebAPI/Pages/.chrome/Default/Extension Rules/MANIFEST-000001
+BusWebAPI.WebAPI/Pages/.chrome/Default/data_reduction_proxy_leveldb/MANIFEST-000002

@@ -57,6 +57,7 @@ export class RegisterBus {
     .then(data => {
       this.router.navigateToRoute('view-bus', {busID: this.busID});
       toastr.success("נרשמת בהצלחה. תצטרך להמתין לאישור. בעמוד זה תוכל לבדוק את סטטוס הבקשה שלך");
-    });
+    })
+    .catch(_ => toastr.error("לא ניתן להרשם יותר מפעם אחת לכל הסעה"));
   }
 }

@@ -42,7 +42,12 @@ export class AdminNavbar {
     });
     this.authService.checkIfAdmin()
     .then(_ => this.isAdmin = true)
-    .catch(_ => this.isAdmin = false);  
+    .catch(_ => {
+      this.isAdmin = false;
+      if(this.isLogged && !this.isAdmin) {
+        toastr.error("אין לך הרשאות לצפות בעמוד זה");
+      }
+    });  
   }
 }
 

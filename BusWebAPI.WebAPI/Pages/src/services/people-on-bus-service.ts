@@ -44,4 +44,12 @@ export class PeopleOnBusService {
     const res = await this.authHttpClient.fetch('/api/PeopleOnBus/GetRideRequests?busID=' + busID);
     return await res.json();
   }
+
+  approveRideRequest(requestorID) {
+    return this.authHttpClient.fetch('/api/PeopleOnBus/ApproveRideRequest?requestorID=' + requestorID);
+  }
+
+  declineRideRequest(requestorID) {
+    return this.authHttpClient.fetch('/api/PeopleOnBus/DeclineRideRequest?requestorID=' + requestorID);
+  }
 }

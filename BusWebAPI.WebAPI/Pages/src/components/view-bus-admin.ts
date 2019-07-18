@@ -19,9 +19,14 @@ export class ViewBusAdmin {
 
   activate(params) {
     this.busID = params.busID;
+    this.getBusDetails();
 
+  }
 
-    this.busService.getBusByID(params.busID)
+  getBusDetails() {
+    
+
+    this.busService.getBusByID(this.busID)
     .then(data => {
       this.bus = data;
       this.bus.SeatsTaken = 0;
@@ -43,10 +48,31 @@ export class ViewBusAdmin {
       this.router.navigateToRoute("home");
     });
 
-
   }
 
-  registerToBus() {
-    this.router.navigateToRoute("register-bus", {busID: this.busID})
+  resetLists() {
+    this.waitingPeople = [];
+    this.verifiedPeople = [];
+    this.declinedPeople = [];
+  }
+
+  approveRideRequest(requestorID) {
+    this.pobService.approveRideRequest(requestorID)
+    .then(_ => {
+      toastr.success("אושר בהצלחה");
+      this.resetLists();
+      this.getBusDetails();
+    })
+    .catch(_ => toastr.error("הייתה תקלה באישור. נסה להתנתק ולהתחבר. אם התקלה ממשיכה פנה למנהל המערכת"));
+  }
+  
+  declineRideRequest(requestorID) {
+    this.pobService.declineRideRequest(requestorID)
+    .then(_ => {
+      toastr.success("נדחה בהצלחה");
+      this.resetLists();
+      this.getBusDetails();
+    })
+    .catch(_ => toastr.error("הייתה תקלה בדחיית הבקשה. נסה להתנתק ולהתחבר. אם התקלה ממשיכה פנה למנהל המערכת"));
   }
 }
